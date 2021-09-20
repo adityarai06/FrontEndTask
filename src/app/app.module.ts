@@ -6,7 +6,8 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { AppComponent } from './app.component';
 import { TryeventComponent } from './tryevent/tryevent.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
+import {CookieService} from 'ngx-cookie-service'
+
 
 @NgModule({
   declarations: [
@@ -17,10 +18,11 @@ import {MatCardModule} from '@angular/material/card';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NoopAnimationsModule,
-    MatCardModule
+    NoopAnimationsModule
+   
+ 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

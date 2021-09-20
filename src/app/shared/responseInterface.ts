@@ -1,8 +1,6 @@
-export interface ImageView {
-    copyright: string;
+export interface ImageView {    
     date: string;
-    explanation: string;
-    hdurl: string;
-    title: boolean;
+    explanation: string;    
+    title: string;
     url: string;   
   }

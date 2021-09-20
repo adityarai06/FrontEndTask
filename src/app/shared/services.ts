@@ -24,10 +24,7 @@ import { map, timeout } from "rxjs/operators";
             params: { ...params },
           })
           .pipe(
-            map((images: ImageView[]) => {
-              images.forEach(
-                (images) => (images.title = images.title)
-              );
+            map((images: ImageView[]) => {                          
               return images;
             })
           );
