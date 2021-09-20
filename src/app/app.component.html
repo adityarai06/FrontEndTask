@@ -1,40 +1,28 @@
 <div class="topnav">
-  <a  href="#home">Spacestagram</a>
-  <!-- <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>-->
-</div> 
-
- <div class="main" *ngIf="load; else wait" style="margin-top: 3%;">
-   
+  <a href="#home">Spacestagram</a>
+</div>
+<div class="main" style="margin-top: 3%;">
   <div class="heart-shape"></div>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;600&display=swap" rel="stylesheet">
   <div class="wrapper">
-    <label for="start">Start date:</label>
-
-    <input type="date" id="start" [(ngModel)]="fromDate" name="trip-start"
-           value="2021-08-01" style="padding-top: 11px; padding-bottom: 11px;"
-           min="2000-01-01" max="2021-12-31">
-           <input type="button" class="button" (click)="filter()"  value="Serach">
+      <div class="input-section">
+          <label for="start">Start date:</label>
+          <input type="date" id="start" [(ngModel)]="fromDate" name="trip-start" value="2021-08-01" min="2000-01-01"
+              max="2021-12-31">
+          <label for="end">End date (optional):</label>
+          <input type="date" id="end" [(ngModel)]="toDate" name="trip-end" value="2021-08-01" min="2000-01-01"
+              max="2021-12-31">
+      </div>
+      <input type="button" class="search-button" (click)="filter()" value="Search">
       <div class="left-col">
-        <div *ngFor="let image of imageList; let i = index" class="post">
-          <p>{{image.title}}</p>
-          <img [src]="image.url" class="post-image" alt="">                  
-          <p>{{image.explanation}}</p>
-          <p>{{image.date}}</p>
-        <!-- <a (click)="callFunction(i,image.date)" [id]="image.date"><img style="height: 75%; width: 25%;" src="../assets/heartsvg.png">
-          <img style="height: 50%; width: 18%;" src="../assets/heart-outline.jpg">
-        </a> -->
-        
-          <input type="button" class="button" (click)="callFunction(i,image.date)" [id]="image.date"  value="Like">
-        </div>
+          <div *ngFor="let image of imageList; let i = index" class="post">
+              <p class="title">{{image.title}}</p>
+              <img [src]="image.url" class="post-image" alt="">
+              <p class="description">{{image.explanation}}</p>
+              <p class="date">{{image.date}}</p>
+              <input type="button" class="button" (click)="callFunction(i,image.date)" [id]="image.date" value="Like">
+          </div>
       </div>
   </div>
-</div> 
-<ng-template #wait>
-    <div style="width: 50%; margin-left: 25%;">
-        <img src="./assets/1486.gif">
-    </div>
-  
-  </ng-template>
+</div>
