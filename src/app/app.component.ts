@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
           ele.classList.toggle("button_red");
         }
       }
-    }, 2000);
+    }, 1500);
 
   }
 
