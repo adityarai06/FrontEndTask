@@ -134,17 +134,12 @@
     cursor: pointer;
   }
   
+  .button_green {
+      color: green;
+  }
+  
   .button_red {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    color: red;
   }
   
   label {
@@ -164,4 +159,14 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 24px;
+  }
+  
+  .reaction-container {
+      text-align: center;
+  }
+  
+  .reaction-container span {
+      font-size: 50px;
+      margin: 20px;
+      cursor: pointer;
   }
