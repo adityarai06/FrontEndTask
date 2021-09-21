@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   btnStyle = 'button';
   dateList;
   likedImage: String[];
+  dislikedImage: String[];
   status: boolean = false;
   load: boolean = true;
   constructor(
@@ -41,19 +42,24 @@ export class AppComponent implements OnInit {
       })
 
     setTimeout(() => {
-      var strDate = this.cookie.get("name");
-      this.likedImage = strDate.split(":");
+      var likesStrDate = this.cookie.get("likes");
+      this.likedImage = likesStrDate.split(":");
+
+      var dislikesStrDate = this.cookie.get("dislikes");
+      this.dislikedImage = dislikesStrDate.split(":");
 
       for (var i = 0; i < this.imageList.length; i++) {
-        for (var j = 0; j < this.likedImage.length; j++) {
-          if (this.likedImage[j] == this.imageList[i].date) {
-            var ele = document.getElementById(this.imageList[i].date);
-            ele.classList.toggle("button_red");
-          }
+        if ((this.dislikedImage.indexOf(this.imageList[i].date) == -1) &&
+            (this.likedImage.indexOf(this.imageList[i].date) != -1)) {
+          var ele = document.getElementById(this.imageList[i].date);
+          ele.classList.toggle("button_green");
+        } else if ((this.likedImage.indexOf(this.imageList[i].date) == -1) &&
+        (this.dislikedImage.indexOf(this.imageList[i].date) != -1)) {
+          var ele = document.getElementById(this.imageList[i].date + 'd');
+          ele.classList.toggle("button_red");
         }
-
       }
-    }, 3000);
+    }, 2000);
 
   }
 
@@ -65,11 +71,27 @@ export class AppComponent implements OnInit {
     this.getImages();
   }
 
-  callFunction(event, date) {
+  callLikeFunction(event, date) {
     this.status = !this.status;
-    this.dateList = this.cookie.get("name") + ":" + date;
-    this.cookie.set("name", this.dateList);
-    var id = document.getElementById(date)
+    this.dateList = this.cookie.get("likes") + ":" + date;
+    this.cookie.set("likes", this.dateList);
+    var id = document.getElementById(date);
+    id.classList.toggle("button_green");
+    var invertId = document.getElementById(date + 'd');
+    invertId.classList.remove("button_red");
+    var editedCookies = this.cookie.get("dislikes").replace(date, '');
+    this.cookie.set("dislikes", editedCookies);
+  }
+
+  callDislikeFunction(event, date) {
+    this.status = !this.status;
+    this.dateList = this.cookie.get("dislikes") + ":" + date;
+    this.cookie.set("dislikes", this.dateList);
+    var id = document.getElementById(date + 'd');
     id.classList.toggle("button_red");
+    var invertId = document.getElementById(date);
+    invertId.classList.remove("button_green");
+    var editedCookies = this.cookie.get("likes").replace(date, '');
+    this.cookie.set("likes", editedCookies);
   }
 }

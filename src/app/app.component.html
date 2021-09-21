@@ -21,7 +21,16 @@
               <img [src]="image.url" class="post-image" alt="">
               <p class="description">{{image.explanation}}</p>
               <p class="date">{{image.date}}</p>
-              <input type="button" class="button" (click)="callFunction(i,image.date)" [id]="image.date" value="Like">
+              <div class="reaction-container">
+                  <span  type="button" class="material-icons-outlined"
+                  (click)="callLikeFunction(i,image.date)" [id]="image.date">
+                      thumb_up
+                  </span>
+                  <span  type="button" class="material-icons-outlined"
+                  (click)="callDislikeFunction(i,image.date)" id="{{image.date + 'd'}}">
+                      thumb_down
+                  </span>
+              </div>
           </div>
       </div>
   </div>
